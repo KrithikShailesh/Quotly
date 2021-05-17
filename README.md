@@ -1,16 +1,21 @@
-# motivator
+# Quotly
 
-A new Flutter application.
+A Flutter Application which displays new quotes each and every time it is opened.
 
-## Getting Started
+## Idea:
 
-This project is a starting point for a Flutter application.
+We all smile when we read something good, I just wanted to make people feel good and have a smile whenever they opened an app. So I planned on creating a quotes app which will make people have some hope whenever they read a quote from this app.
 
-A few resources to get you started if this is your first Flutter project:
+## Platform:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+1. Android Studio
+2. Firebase
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Difficuties Faced and Solved:
+
+Initially I kept all my quotes inside a list, but the app size seemed to get bigger each and every time added new quotes to the list.
+So I planned to keep all the quotes in a Firebase Database (Firestore) and fetched the quotes from there.
+
+## Plans:
+
+I am in the idea of adding more features to the app thereby making it a complete quotes app.
