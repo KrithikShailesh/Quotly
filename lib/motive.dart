@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:math';
 
+import 'main.dart';
+
 class Screen extends StatefulWidget {
   @override
   _ScreenState createState() => _ScreenState();
@@ -11,34 +13,7 @@ class Screen extends StatefulWidget {
 
 class _ScreenState extends State<Screen> {
   var date=new DateTime.now();
-  bool _initialized = false;
-  bool _error = false;
   var stream;
-
-  void initializeFlutterFire() async {
-    try {
-      // Wait for Firebase to initialize and set `_initialized` state to true
-      await Firebase.initializeApp();
-      setState(() {
-        _initialized = true;
-      });
-    } catch (e) {
-      // Set `_error` state to true if Firebase initialization fails
-      setState(() {
-        _error = true;
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    initializeFlutterFire();
-    super.initState();
-  }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,20 +21,20 @@ class _ScreenState extends State<Screen> {
     var random=new Random();
 
     var streamBuilder=StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('Quotes').snapshots(),
+        stream: FirebaseFirestore.instance.collection('SmallQuotes').snapshots(),
         builder: (context, snapshot){
           if(!snapshot.hasData) return Text('Loading... Please Wait..');
           return Container(
-              padding: new EdgeInsets.all(25.0),
+              padding: new EdgeInsets.all(15.0),
               child:
-              Text(snapshot.data.docs[random.nextInt(100)]['quote'],style: TextStyle(fontSize: 25,color: Colors.white,fontFamily: 'Coves'), textAlign: TextAlign.center)
+              Text(snapshot.data.docs[random.nextInt(100)]['small'],style: TextStyle(fontSize: 25,color: Colors.black,fontFamily: 'Coves'), textAlign: TextAlign.center)
 
           );
         }
     );
 
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
 
         body: Wrap(
           children: [
@@ -69,7 +44,7 @@ class _ScreenState extends State<Screen> {
               child: Column(
                 children: [
                   Container(
-                    padding:new EdgeInsets.all(50.0),
+                    padding:new EdgeInsets.only(top:50.0),
                   child:
                       Column(
                         children: [
@@ -79,10 +54,26 @@ class _ScreenState extends State<Screen> {
                         ]
                       )
                   ),
-                  SizedBox(height: 40),
                   streamBuilder,
+                  ButtonBar(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextButton( child: Text("Life")),
+                      TextButton(child: Text("Love")),
+                      IconButton(icon: Icon(Icons.adb)),
+                      IconButton(icon: Icon(Icons.ac_unit))
+                    ],
+                  ),
+                  ButtonBar(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(icon: Icon(Icons.adb)),
+                      IconButton(icon: Icon(Icons.ac_unit))
+                    ],
+                  )
 
                 ],
+
               ),
             )
             )
