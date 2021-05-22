@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:math';
 
+import 'General.dart';
 import 'main.dart';
 
 class Screen extends StatefulWidget {
@@ -25,7 +26,7 @@ class _ScreenState extends State<Screen> {
         builder: (context, snapshot){
           if(!snapshot.hasData) return Text('Loading... Please Wait..');
           return Container(
-              padding: new EdgeInsets.all(15.0),
+              padding: new EdgeInsets.all(25.0),
               child:
               Text(snapshot.data.docs[random.nextInt(100)]['small'],style: TextStyle(fontSize: 25,color: Colors.black,fontFamily: 'Coves'), textAlign: TextAlign.center)
 
@@ -55,20 +56,24 @@ class _ScreenState extends State<Screen> {
                       )
                   ),
                   streamBuilder,
+                  SizedBox(height: 60),
                   ButtonBar(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      TextButton( child: Text("Life")),
+                      TextButton(onPressed: (){ Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => General()),
+                      );}, child: Text("General")),
                       TextButton(child: Text("Love")),
-                      IconButton(icon: Icon(Icons.adb)),
-                      IconButton(icon: Icon(Icons.ac_unit))
+                      TextButton(child: Text("Life")),
+                      TextButton(child: Text("Motivation"))
                     ],
                   ),
                   ButtonBar(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      IconButton(icon: Icon(Icons.adb)),
-                      IconButton(icon: Icon(Icons.ac_unit))
+                      TextButton(child: Text("Friendship")),
+                      TextButton(child: Text("Relaxing"))
                     ],
                   )
 
